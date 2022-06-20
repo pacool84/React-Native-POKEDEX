@@ -5,6 +5,8 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Account from "../../screens/Account";
 import PokeDex from "../../screens/PokeDex";
 import Favorite from "../../screens/Favorite";
+import FavoriteNavigation from "./FavoriteNavigation";
+import PokeDexNavigation from "./PokeDexNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +15,7 @@ const Navigation = () => {
     <Tab.Navigator initialRouteName="PokeDex">
       <Tab.Screen
         name="Favorite"
-        component={Favorite}
+        component={FavoriteNavigation}
         options={{
           tabBarLabel: "Favoritos",
           tabBarIcon: ({ color, size }) => (
@@ -23,9 +25,10 @@ const Navigation = () => {
       />
       <Tab.Screen
         name="PokeDex"
-        component={PokeDex}
+        component={PokeDexNavigation}
         options={{
-          tabBarLabel: "",
+          tabBarLabel:
+            "" /* Lo dejamos vacio por que solo queremos mostrar el icono de la pokeball */,
           tabBarIcon: () => renderPokeBall(),
         }}
       />
