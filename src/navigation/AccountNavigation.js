@@ -1,21 +1,21 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Favorite from "../screens/Favorite";
+import Account from "../screens/Account";
 
 const Stack = createStackNavigator();
 
-const FavoriteNavigation = () => {
+const AccountNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Favorite"
-        component={Favorite}
+        name="Account"
+        component={Account}
         options={{
-          title: "Favoritos",
+          title: "Mi Cuenta",
         }}
       />
     </Stack.Navigator>
   );
 };
 
-export default FavoriteNavigation;
+export default AccountNavigation;
