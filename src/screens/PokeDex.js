@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Text, SafeAreaView } from "react-native";
-import { getPokemonApi } from "../API/pokemonData";
 
 const PokeDex = () => {
-  useEffect(() => {
-    (async () => {
-      await loadPokemons();
-    })();
-  }, []);
+  const URL = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 
-  const loadPokemons = async () => {
+  const fetchPokemons = async () => {
     try {
-      const response = await getPokemonApi();
-      console.log(response);
+      const response = await fetch(URL);
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    fetchPokemons();
+  }, []);
 
   return (
     <SafeAreaView>
