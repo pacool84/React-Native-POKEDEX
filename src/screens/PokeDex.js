@@ -29,7 +29,7 @@ const PokeDex = () => {
             pokemonDetails.sprites.other["official-artwork"].front_default,
         });
       }
-      setPokemons(...pokemons, ...pokemonsArray);
+      setPokemons([...pokemons, ...pokemonsArray]);
     } catch (error) {
       console.error(error);
     }
