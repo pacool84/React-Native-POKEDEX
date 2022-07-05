@@ -1,39 +1,38 @@
 import React from "react";
 import {
   StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
   View,
   Text,
+  Image,
+  TouchableWithoutFeedback,
 } from "react-native";
+import getColorByPokemonType from "../utils/getColorByPokemonType";
+import { capitalize } from "lodash";
 
-const PokemonCard = (props) => {
+export default function PokemonCard(props) {
   const { pokemon } = props;
+  const pokemonColor = getColorByPokemonType(pokemon.type);
+  const bgStyles = { backgroundColor: pokemonColor, ...styles.bgStyles };
 
   const goToPokemon = () => {
-    console.log(
-      `Yo te elijo ${pokemon.name.toUpperCase()} que es del tipo ${pokemon.type.toUpperCase()} `
-    );
+    console.log(`Vamos al pokemon: ${pokemon.name}`);
+    console.log(pokemon);
   };
 
   return (
     <TouchableWithoutFeedback onPress={goToPokemon}>
       <View style={styles.card}>
         <View style={styles.spacing}>
-          <View style={styles.bgStyles}>
-            <Text style={styles.order}>
-              #{`${pokemon.order}`.padStart(3, 0)}
-            </Text>
+          <View style={bgStyles}>
+            <Text style={styles.number}>#{`${pokemon.id}`.padStart(3, 0)}</Text>
+            <Text style={styles.name}>{capitalize(pokemon.name)}</Text>
             <Image source={{ uri: pokemon.image }} style={styles.image} />
-            <Text style={styles.name}>{pokemon.name.toUpperCase()}</Text>
           </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
   );
-};
-
-export default PokemonCard;
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -45,9 +44,11 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   bgStyles: {
-    backgroundColor: "gray",
+    flex: 1,
+    borderRadius: 15,
+    padding: 10,
   },
-  order: {
+  number: {
     position: "absolute",
     right: 10,
     top: 10,
@@ -59,14 +60,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 15,
     paddingTop: 10,
-    left: 2.5,
   },
-
   image: {
     position: "absolute",
     bottom: 2,
     right: 2,
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
   },
 });
